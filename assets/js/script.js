@@ -1,3 +1,7 @@
+// global start and end hours in 24H time
+var startingHour = 9;
+var endingHour = 17
+
 
 // current day
 var titleDate = function () {
@@ -7,15 +11,14 @@ var titleDate = function () {
 
 // generate timeblocks
 var timeBlocks = function () {
-    var hour = 9;
 
-    for (hour = 9; hour < 18; hour++) {
+    for (hour = startingHour; hour < endingHour + 1; hour++) {
         var blockList = $("<div>")
-            .addClass("row")
+            .addClass("row timeblock")
             .attr("id", hour);
 
         var businessHour = $("<div>")
-            .addClass("col-3");
+            .addClass("col-3 hour");
 
         // adjust formating for hours before 10AM
         if (hour < 10) {
@@ -40,7 +43,28 @@ var timeBlocks = function () {
 
 };
 
+var colorCoding = function () {
+
+    // test variable
+    var presentHour = 13;
+
+    //var presentHour = moment().format("H");
+
+    for (hour = startingHour; hour < endingHour + 1; hour++) {
+        if (hour < presentHour) {
+            $("#" + hour).addClass("past");
+        }
+        else if (hour == presentHour) {
+            $("#" + hour).addClass("present");
+        }
+        else {
+            $("#" + hour).addClass("future");
+        }
+    }
+};
+
 
 
 titleDate();
 timeBlocks();
+colorCoding();
