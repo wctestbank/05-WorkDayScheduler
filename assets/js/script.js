@@ -30,7 +30,7 @@ var timeBlocks = function () {
                 .format("hA"));
         }
 
-        var event = $("<div>")
+        var event = $("<textarea>")
             .addClass("col-9")
             .text("TEST");
 
